@@ -19,3 +19,17 @@ jobs:
       # https://github.com/actions/checkout
       - name: Init Checkout
         uses: actions/checkout@v4
+
+      # https://github.com/actions/setup-java
+      - name: set up java 21 and maven
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+#          cache: 'maven'
+
+      - name: test java
+        run: java --version
+
+      - name: test maven
+        run: mvn --version
