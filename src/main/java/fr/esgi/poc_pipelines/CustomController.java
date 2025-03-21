@@ -15,4 +15,9 @@ public class CustomController {
     public String hello() {
         return "Hello World";
     }
+
+    @GetMapping("toto")
+    public String toto() {
+        return "Hello World toto";
+    }
 }
