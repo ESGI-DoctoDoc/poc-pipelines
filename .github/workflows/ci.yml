@@ -1,0 +1,21 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    types: [ opened, synchronize, reopened ]
+  workflow_call:
+
+permissions:
+   contents: read
+
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/actions/checkout
+      - name: Init Checkout
+        uses: actions/checkout@v4
