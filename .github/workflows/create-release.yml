@@ -26,7 +26,6 @@ jobs:
       - name: Fetch Project Version
         id: extract_project_version
         run: |
-          sudo apt-get update && sudo apt-get install jq
           version=$(grep -m 1 '<version>' pom.xml | sed 's/.*<version>\(.*\)<\/version>.*/\1/')
           echo "$version"
           echo "version=$version" >> $GITHUB_OUTPUT
@@ -39,4 +38,4 @@ jobs:
           name: Release ${{ steps.extract_project_version.outputs.version }}
           tag_name: ${{ steps.extract_project_version.outputs.version }}
           body: ${{ inputs.release-description }}
-          token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}

@@ -34,7 +34,7 @@ jobs:
         run: mvn --version
 
       - name: build application
-        run: mvn clean install -DskipTestss
+        run: mvn clean install -DskipTests
 
       - name: run test
         run: mvn test
