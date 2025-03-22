@@ -21,7 +21,8 @@ jobs:
           ref: ${{ inputs.version-tag }}
 
       - name: Configure application.properties stage configuration
-        run: echo "${{ secrets.PROPERTIES_STAGE_CONFIG }}" > /src/main/resources/application.properties
+#        run: echo "${{ secrets.PROPERTIES_STAGE_CONFIG }}" > /src/main/resources/application.properties
+        run: ls
 
       # https://github.com/docker/login-action
       - name: Log in to Docker Hub
