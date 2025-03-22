@@ -5,6 +5,6 @@ WORKDIR /app/source
 RUN mvn clean install
 
 FROM openjdk:21-jdk-oracle
-EXPOSE 8080
+EXPOSE 8081
 COPY --from=builder /app/source/target/*.jar app/app.jar
 ENTRYPOINT ["java", "-jar","app/app.jar"]
