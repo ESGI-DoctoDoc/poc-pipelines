@@ -56,6 +56,6 @@ jobs:
     env:
       deploy_url: ${{ secrets.RENDER_DEPLOY_STAGE_HOOK_URL }}
 
-      steps:
-        - name: deploy on render
-          run: curl "$deploy_url"
+    steps:
+      - name: deploy on render
+        run: curl "$deploy_url"
