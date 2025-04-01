@@ -9,11 +9,16 @@ on:
   workflow_call:
 
 permissions:
-   contents: read
+  pages: write
+  id-token: write
 
 
 jobs:
   ci:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     steps:
       # https://github.com/actions/checkout
@@ -38,6 +43,23 @@ jobs:
 
       - name: run test
         run: mvn test
+
+      - name: run javadoc
+        run: mvn javadoc:javadoc
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './target/reports/apidocs'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+
 
 #  sonar:
 #    needs: ci
