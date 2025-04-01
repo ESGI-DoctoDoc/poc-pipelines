@@ -14,4 +14,9 @@ public class CustomService {
         System.out.println(name);
         return "test";
     }
+
+    public String toto(String name) {
+        System.out.println(name);
+        return "toto";
+    }
 }
