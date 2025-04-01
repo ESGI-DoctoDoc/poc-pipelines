@@ -12,7 +12,7 @@ public class CustomController {
 
     @GetMapping("/")
     public String up() {
-        return "up " + test;
+        return "up" + test;
     }
 
     @GetMapping("hello")

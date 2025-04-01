@@ -23,19 +23,23 @@ jobs:
       - name: Init Checkout
         uses: actions/checkout@v4
 
-      - name: Fetch Project Version
-        id: extract_project_version
-        run: |
-          version=$(grep -m 1 '<version>' pom.xml | sed 's/.*<version>\(.*\)<\/version>.*/\1/')
-          echo "$version"
-          echo "version=$version" >> $GITHUB_OUTPUT
+
+      - name: Create a package
+        run: mvn clean deploy
+
+#      - name: Fetch Project Version
+#        id: extract_project_version
+#        run: |
+#          version=$(grep -m 1 '<version>' pom.xml | sed 's/.*<version>\(.*\)<\/version>.*/\1/')
+#          echo "$version"
+#          echo "version=$version" >> $GITHUB_OUTPUT
 
       # https://github.com/actions/create-release
-      - name: Create Release On Github
-        id: create_release
-        uses: softprops/action-gh-release@v2
-        with:
-          name: Release ${{ steps.extract_project_version.outputs.version }}
-          tag_name: ${{ steps.extract_project_version.outputs.version }}
-          body: ${{ inputs.release-description }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Create Release On Github
+#        id: create_release
+#        uses: softprops/action-gh-release@v2
+#        with:
+#          name: Release ${{ steps.extract_project_version.outputs.version }}
+#          tag_name: ${{ steps.extract_project_version.outputs.version }}
+#          body: ${{ inputs.release-description }}
+#          token: ${{ secrets.GITHUB_TOKEN }}
